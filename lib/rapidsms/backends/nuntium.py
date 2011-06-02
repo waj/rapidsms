@@ -2,6 +2,20 @@ from rapidsms.backends.http import RapidHttpBacked
 import urllib2
 import base64
 
+"""
+To use this backend, first create a Nuntium account and application (https://nuntium.instedd.org)
+Then append 'nuntium' to the list of available backends:
+
+    "nuntium_backend" : {
+        "ENGINE": "rapidsms.backends.nuntium",
+        "account": "<my_nuntium_account>",
+        "application_name": "<nuntium_application_name>",
+        "application_password": "<nuntium_application_password>"
+        "port": 1234        <= Optional, defaults to 8888
+    }
+
+"""
+
 class NuntiumBackend(RapidHttpBacked):
 
     def configure(self, account, application_name, application_password, port=8888, **kwargs):
