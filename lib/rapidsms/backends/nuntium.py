@@ -10,7 +10,8 @@ Then append 'nuntium' to the list of available backends:
         "ENGINE": "rapidsms.backends.nuntium",
         "account": "<my_nuntium_account>",
         "application_name": "<nuntium_application_name>",
-        "application_password": "<nuntium_application_password>"
+        "application_password": "<nuntium_application_password>",
+        "server_url": "https://nuntium.instedd.org"     <= Optional, defaults to InSTEDD's server
         "port": 1234        <= Optional, defaults to 8888
     }
 
@@ -18,14 +19,16 @@ Then append 'nuntium' to the list of available backends:
 
 class NuntiumBackend(RapidHttpBacked):
 
-    def configure(self, account, application_name, application_password, port=8888, **kwargs):
+    def configure(self, account, application_name, application_password,
+                  server_url='https://nuntium.instedd.org', port=8888, **kwargs):
         self.account = account
         self.application_name = application_name
         self.application_password = application_password
         http_args = {
             'port': port,
-            'gateway_url': 'https://nuntium.instedd.org/%(account)s/%(application_name)s/send_ao' %
+            'gateway_url': '%(server_url)s/%(account)s/%(application_name)s/send_ao' %
                 {
+                    'server_url': server_url,
                     'account': account,
                     'application_name': application_name
                 },
