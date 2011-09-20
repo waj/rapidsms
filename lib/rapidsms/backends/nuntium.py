@@ -1,4 +1,4 @@
-from rapidsms.backends.http import RapidHttpBacked
+from rapidsms.backends.http import RapidHttpBackend
 import urllib2
 import base64
 
@@ -17,7 +17,7 @@ Then append 'nuntium' to the list of available backends:
 
 """
 
-class NuntiumBackend(RapidHttpBacked):
+class NuntiumBackend(RapidHttpBackend):
 
     def configure(self, account, application_name, application_password,
                   server_url='https://nuntium.instedd.org', port=8888, **kwargs):
