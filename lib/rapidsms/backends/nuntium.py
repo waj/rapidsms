@@ -12,6 +12,7 @@ Then append 'nuntium' to the list of available backends:
         "application_name": "<nuntium_application_name>",
         "application_password": "<nuntium_application_password>",
         "server_url": "https://nuntium.instedd.org"     <= Optional, defaults to InSTEDD's server
+        "host": "0.0.0.0"   <= Binding host, optional, defaults to 'localhost'
         "port": 1234        <= Optional, defaults to 8888
     }
 
@@ -20,7 +21,7 @@ Then append 'nuntium' to the list of available backends:
 class NuntiumBackend(RapidHttpBackend):
 
     def configure(self, account, application_name, application_password,
-                  server_url='https://nuntium.instedd.org', port=8888, **kwargs):
+                  server_url='https://nuntium.instedd.org', host='localhost', port=8888, **kwargs):
         self.account = account
         self.application_name = application_name
         self.application_password = application_password
