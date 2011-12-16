@@ -1,4 +1,5 @@
 from rapidsms.backends.http import RapidHttpBackend
+from django.http import HttpResponse
 import urllib2
 import base64
 
@@ -38,6 +39,10 @@ class NuntiumBackend(RapidHttpBackend):
         }
         self.info(http_args['gateway_url'])
         super(NuntiumBackend, self).configure(**http_args)
+
+    def handle_request(self, request):
+        ret = super(NuntiumBackend, self).handle_request(request)
+        return HttpResponse()
 
     def send(self, message):
         self.info('Sending message: %s' % message)
