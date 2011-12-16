@@ -27,6 +27,7 @@ class NuntiumBackend(RapidHttpBackend):
         self.application_name = application_name
         self.application_password = application_password
         http_args = {
+            'host': host,
             'port': port,
             'gateway_url': '%(server_url)s/%(account)s/%(application_name)s/send_ao' %
                 {
